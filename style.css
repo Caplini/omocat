@@ -5,6 +5,30 @@ body, html {
     background-color: #171717;  /* Dark gray background */
 }
 
+.promo {
+    position: absolute;
+    bottom: 2%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    z-index: 1000;
+    pointer-events: auto;
+
+}
+
+.promo a {
+    color: #0099ff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.promo a:hover {
+    color: #0077cc;
+}
+
+
 .container {
     display: flex;
     justify-content: center;
@@ -19,7 +43,7 @@ body, html {
     border-radius: 20px; /* Rounded corners for the outer container */
     overflow: hidden; /* This ensures the inner Twitter content conforms to the rounded corners of the container */
     width: 40vw;
-    height: 100vh;
+    height: 90vh;
 }
 
 .twitter-timeline {
