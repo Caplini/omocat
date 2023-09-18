@@ -1,7 +1,18 @@
-header {
-    background-color: #4e4e4e;
-      padding: 0px;
-      text-align: center;
-      height: 60px;
-      display: flex;
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #000;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.twitter-timeline {
+    width: 80%;
+    max-width: 600px;
 }
