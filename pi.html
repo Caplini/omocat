@@ -2,34 +2,41 @@
 <html>
 <head>
   <title>Pi Calculator</title>
-  <style>
-    #container {
-      text-align: center;
-    }
-  </style>
 </head>
 <body>
-  <div id="container">
-    <h1>Pi Calculator</h1>
-    <button onclick="calculatePi()">Calculate Next Digit</button>
-    <p>Digits of Pi: <span id="piDigits">3.</span></p>
-    <p>Count: <span id="count">0</span></p>
-  </div>
+  <h1>Pi Calculator</h1>
+  <p>Digits of Pi: <span id="piDigits">3.</span></p>
+  <p>Count: <span id="count">0</span></p>
 
   <script>
     let count = 0;
     let pi = 0;
-    let divisor = 1;
+    let sign = 1;
+    let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    function playSound() {
+      let oscillator = audioCtx.createOscillator();
+      oscillator.type = 'sine';
+      oscillator.frequency.setValueAtTime(440, audioCtx.currentTime);
+      oscillator.connect(audioCtx.destination);
+      oscillator.start();
+      oscillator.stop(audioCtx.currentTime + 0.1);
+    }
 
     function calculatePi() {
-      pi += 4/divisor - 4/(divisor + 2);
-      divisor += 4;
+      pi += sign * (4 / (1 + count * 2));
+      sign *= -1;
+      count++;
 
-      const piRounded = pi.toFixed(count+1).slice(0, -1);
+      const piRounded = pi.toFixed(count);
 
-      document.getElementById("piDigits").textContent = "3." + piRounded.slice(2);
-      document.getElementById("count").textContent = ++count;
+      document.getElementById("piDigits").textContent = piRounded;
+      document.getElementById("count").textContent = count;
+
+      playSound();
     }
+
+    setInterval(calculatePi, 1000); // Generate every second
   </script>
 </body>
 </html>
