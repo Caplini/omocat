@@ -5,38 +5,38 @@
 </head>
 <body>
   <h1>Pi Calculator</h1>
-  <p>Digits of Pi: <span id="piDigits"></span></p>
+  <p>Digits of Pi: <span id="piDigits">3.</span></p>
   <p>Count: <span id="count">0</span></p>
 
   <script>
-    let k = 0;
-    let sum = BigInt(0);
-    let multiplier = BigInt(13591409);
-    let base = BigInt(640320);
-    let threeBaseSqrt = BigInt(262537412640768000); // 640320^3/2 as BigInt
+    let count = 0;
+    let pi = 0;
+    let sign = 1;
+    let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
-    function factorial(n) {
-      let result = BigInt(1);
-      for (let i = BigInt(1); i <= n; i++) {
-        result *= i;
-      }
-      return result;
+    function playSound() {
+      let oscillator = audioCtx.createOscillator();
+      oscillator.type = 'sine';
+      oscillator.frequency.setValueAtTime(440, audioCtx.currentTime);
+      oscillator.connect(audioCtx.destination);
+      oscillator.start();
+      oscillator.stop(audioCtx.currentTime + 0.1);
     }
 
-    async function calculatePi() {
-      let numerator = factorial(BigInt(6) * k) * (multiplier + BigInt(545140134) * k);
-      let denominator = factorial(BigInt(3) * k) * (factorial(k) ** BigInt(3)) * (threeBaseSqrt ** k);
-      
-      sum += BigInt(12) * numerator / denominator;
-      
-      let pi = parseFloat((BigInt(10) ** BigInt(20) / sum).toString().slice(0, 19));
-      document.getElementById("piDigits").textContent = pi;
-      document.getElementById("count").textContent = k;
+    function calculatePi() {
+      pi += sign * (4 / (1 + count * 2));
+      sign *= -1;
+      count++;
 
-      k++;
+      const piRounded = pi.toFixed(count);
+
+      document.getElementById("piDigits").textContent = piRounded;
+      document.getElementById("count").textContent = count;
+
+      playSound();
     }
 
-    setInterval(calculatePi, 1000); // Calculate every second
+    setInterval(calculatePi, 1000); // Generate every second
   </script>
 </body>
 </html>
