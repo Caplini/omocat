@@ -7,18 +7,28 @@
     <link rel="stylesheet" href="style.css?v=1.0">
 </head>
 <body>
-    <div id="text">AGE</div>
-    <strong><div id="age">Loading...</div></strong>
 
-<!----
-    <select id="timeFormat" onchange="updateAgeDisplay();">
-        <option value="years">Years</option>
-        <option value="days">Days</option>
-        <option value="hours">Hours</option>
-        <option value="minutes">Minutes</option>
-        <option value="seconds">Seconds</option>
-    </select>
--->
+    <div id="tabs">
+        <button class="tablink" onclick="openTab('home', this)" id="defaultOpen">Home</button>
+        <button class="tablink" onclick="openTab('statistics', this)">Statistics</button>
+    </div>
+    
+    <!-- Home Tab Content -->
+    <div id="home" class="tabcontent">
+        <strong><div id="age">Loading...</div></strong>
+    </div>
+    
+    <!-- Statistics Tab Content -->
+    <div id="statistics" class="tabcontent">
+        <h2>Life Statistics</h2>
+        <p>Approximately years <span id="lifeLeft">XXX</span> left alive.</p>
+        <p id="percentageLived">You have lived approximately <span>0%</span> of your life so far.</p>
+        <p>Spent approximately hours <span id="sleepTime">XXX</span> sleeping.</p>
+        <p>Spent approximately hours <span id="eatingTime">XXX</span> eating.</p>
+        <p>Spent approximately hours <span id="workTime">XXX</span> at school/work.</p>
+    </div>
+
+    <div id="text">AGE</div>
 
         <div id="ageInputModal" class="modal">
             <div class="modal-content">

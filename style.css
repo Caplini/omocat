@@ -5,6 +5,7 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #f4f4f4;
+    margin-top: 40px; /* This ensures content doesn't go under the fixed tabs */
 }
 
 #text {
@@ -54,4 +55,42 @@ body {
 
 .modal input {
     margin: 10px 0;
+}
+
+#tabs {
+    overflow: hidden;
+    background-color: #f1f1f1;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+.tablink {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+    text-decoration: none; /* To remove the underline from the anchor tag */
+}
+
+.tablink:hover {
+    background-color: #ddd;
+}
+
+.tablink.active {
+    border-bottom: 2px solid black;
+}
+
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+}
+
+#home {
+    display: block;
 }
