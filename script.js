@@ -78,6 +78,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Update frequently for a smooth flow
         setInterval(updateAgeDisplay, 10);
+        setInterval(updateCountdown, 10); // updates every second
+
     }
 });
 
@@ -112,7 +114,7 @@ function openTab(tabName, elmnt) {
     elmnt.classList.add("active");
 
     // Hide the "AGE" text if Statistics tab is loaded, otherwise show it.
-    if(tabName === 'statistics') {
+    if(tabName === 'statistics' || tabName === 'countdown') {
         ageText.style.display = "none";
     } else {
         ageText.style.display = "block";
@@ -151,5 +153,23 @@ function updateStatistics() {
     document.querySelector("#percentageLived span").textContent = lifePercentageLived.toFixed(2) + "%";
 }
 
+function updateCountdown() {
+    const ageInYears = calculateAge();
+    const averageLifespan = 80;
+
+    let ageText = document.getElementById('text');
+
+    const yearsLeft = averageLifespan - ageInYears;
+    const daysLeft = (yearsLeft * 365.25); // accounting for leap years
+    const hoursLeft = daysLeft * 24;
+    const minutesLeft = hoursLeft * 60;
+    const secondsLeft = minutesLeft * 60;
+
+    document.getElementById("yearsLeft").textContent = yearsLeft.toFixed(9);
+    document.getElementById("daysLeft").textContent = Math.floor(daysLeft);
+    document.getElementById("hoursLeft").textContent = Math.floor(hoursLeft);
+    document.getElementById("minutesLeft").textContent = Math.floor(minutesLeft);
+    document.getElementById("secondsLeft").textContent = secondsLeft.toFixed(1);
+}
 
 

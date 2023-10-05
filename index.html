@@ -11,6 +11,7 @@
     <div id="tabs">
         <button class="tablink" onclick="openTab('home', this)" id="defaultOpen">Home</button>
         <button class="tablink" onclick="openTab('statistics', this)">Statistics</button>
+        <button class="tablink" onclick="openTab('countdown', this)">Countdown</button>
     </div>
     
     <!-- Home Tab Content -->
@@ -26,6 +27,15 @@
         <p>Spent approximately hours <span id="sleepTime">XXX</span> sleeping.</p>
         <p>Spent approximately hours <span id="eatingTime">XXX</span> eating.</p>
         <p>Spent approximately hours <span id="workTime">XXX</span> at school/work.</p>
+    </div>
+
+    <div id="countdown" class="tabcontent">
+        <h2>Countdown to Average Lifespan</h2>
+        <p>Years left: <span id="yearsLeft">XXX</span></p>
+        <p>Days left: <span id="daysLeft">XXX</span></p>
+        <p>Hours left: <span id="hoursLeft">XXX</span></p>
+        <p>Minutes left: <span id="minutesLeft">XXX</span></p>
+        <p>Seconds left: <span id="secondsLeft">XXX</span></p>
     </div>
 
     <div id="text">AGE</div>
