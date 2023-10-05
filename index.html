@@ -3,23 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OMO.CAT</title>
+    <title>Age Display</title>
     <link rel="stylesheet" href="style.css?v=1.0">
-    <script src="scripts.js?v=1.0"></script>
-
-    <meta property="og:image" content="https://omo.cat/cateatingnoodles.jpg">
 </head>
 <body>
-    <div class="loading-screen promo">
-        Interested in more content? Check out <a href="https://caplini.dev" target="_blank" rel="noopener noreferrer">caplini.dev</a> for more insights!
-    </div>
-    
-    <div class="container">
-        <div class="twitter-container">
-            <a class="twitter-timeline" data-theme="dark" href="https://twitter.com/ElfondoCaplini?ref_src=twsrc%5Etfw">Tweets by me</a>
+    <div id="text">AGE</div>
+    <strong><div id="age">Loading...</div></strong>
+
+<!----
+    <select id="timeFormat" onchange="updateAgeDisplay();">
+        <option value="years">Years</option>
+        <option value="days">Days</option>
+        <option value="hours">Hours</option>
+        <option value="minutes">Minutes</option>
+        <option value="seconds">Seconds</option>
+    </select>
+-->
+
+        <div id="ageInputModal" class="modal">
+            <div class="modal-content">
+                <h2>Enter Your Birth Details</h2>
+                <label>Year: <input type="number" id="inputYear"></label><br>
+                <label>Day (1-31): <input type="number" id="inputDay"></label><br>
+                <label>Month (1-12): <input type="number" id="inputMonth"></label><br>
+                <label>Hour (0-23): <input type="number" id="inputHour"></label><br>
+                <button onclick="saveBirthData()">Submit</button>
+            </div>
         </div>
-    </div>
-    
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <script src="script.js"></script>
 </body>
 </html>
