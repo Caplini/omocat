@@ -74,3 +74,13 @@ document.addEventListener('DOMContentLoaded', function() {
         setInterval(updateAgeDisplay, 10);
     }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if the URL includes the resetAge parameter
+    if (window.location.search.includes('resetAge=true')) {
+        // Clear the birthDate from localStorage
+        localStorage.removeItem('birthDate');
+        // Redirect user to the main page without the query parameter
+        window.location.href = window.location.href.split('?')[0];
+    }
+});
