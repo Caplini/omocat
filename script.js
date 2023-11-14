@@ -7,12 +7,18 @@ function showAgeInputModal() {
 }
 
 window.saveBirthData = function() {
-    birthYear = document.getElementById('inputYear').value;
-    birthDay = document.getElementById('inputDay').value;
-    birthMonth = document.getElementById('inputMonth').value;
-    birthHour = document.getElementById('inputHour').value;
+    // Convert birth date to GMT
+    const birthDate = new Date(Date.UTC(birthYear, birthMonth - 1, birthDay, birthHour));
+    
+    // Get current date in GMT
+    const now = new Date(Date.now());
 
-    localStorage.setItem("birthDate", JSON.stringify({ year: birthYear, day: birthDay, month: birthMonth, hour: birthHour }));
+    const ageInMilliseconds = now - birthDate;
+    const ageInSeconds = ageInMilliseconds / 1000;
+    const ageInMinutes = ageInSeconds / 60;
+    const ageInHours = ageInMinutes / 60;
+    const ageInDays = ageInHours / 24;
+    const ageInYears = ageInDays / 365.25; // Considering leap years
 
     // Close the modal after saving data
     document.getElementById('ageInputModal').style.display = "none";
