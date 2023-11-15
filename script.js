@@ -31,9 +31,16 @@ window.saveBirthData = function() {
 }
 
 function calculateAge() {
-    const birthDate = new Date(birthYear, birthMonth - 1, birthDay, birthHour);
-    const now = new Date();
-    const ageInMilliseconds = now - birthDate;
+    // Create birth date in UTC
+    const birthDateUTC = new Date(Date.UTC(birthYear, birthMonth - 1, birthDay, birthHour));
+
+    // Add 12 hours for UTC+12
+    const birthDateUTC12 = new Date(birthDateUTC.getTime() + (12 * 60 * 60 * 1000));
+
+    // Get current date in UTC
+    const nowUTC = new Date(Date.now());
+
+    const ageInMilliseconds = nowUTC - birthDateUTC12;
     const ageInSeconds = ageInMilliseconds / 1000;
     const ageInMinutes = ageInSeconds / 60;
     const ageInHours = ageInMinutes / 60;
