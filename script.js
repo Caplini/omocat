@@ -40,7 +40,7 @@ function calculateAge() {
     // Get current date in UTC
     const nowUTC = new Date(Date.now());
 
-    const ageInMilliseconds = nowUTC + 12*1000*60*60 - birthDateUTC12;
+    const ageInMilliseconds = nowUTC - birthDateUTC12;
     const ageInSeconds = ageInMilliseconds / 1000;
     const ageInMinutes = ageInSeconds / 60;
     const ageInHours = ageInMinutes / 60;
