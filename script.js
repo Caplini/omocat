@@ -7,12 +7,21 @@ function showAgeInputModal() {
 }
 
 window.saveBirthData = function() {
-    birthYear = document.getElementById('inputYear').value;
-    birthDay = document.getElementById('inputDay').value;
-    birthMonth = document.getElementById('inputMonth').value;
-    birthHour = document.getElementById('inputHour').value;
+    // Convert birth date to GMT
+    const birthDate = new Date(Date.UTC(birthYear, birthMonth - 1, birthDay, birthHour));
 
     localStorage.setItem('birthDate', JSON.stringify({year: birthYear, day: birthDay, month: birthMonth, hour: birthHour}));
+
+    
+    // Get current date in GMT
+    const now = new Date(Date.now());
+
+    const ageInMilliseconds = now - birthDate;
+    const ageInSeconds = ageInMilliseconds / 1000;
+    const ageInMinutes = ageInSeconds / 60;
+    const ageInHours = ageInMinutes / 60;
+    const ageInDays = ageInHours / 24;
+    const ageInYears = ageInDays / 365.25; // Considering leap years
 
     // Close the modal after saving data
     document.getElementById('ageInputModal').style.display = "none";
@@ -25,9 +34,16 @@ window.saveBirthData = function() {
 }
 
 function calculateAge() {
-    const birthDate = new Date(birthYear, birthMonth - 1, birthDay, birthHour);
-    const now = new Date();
-    const ageInMilliseconds = now - birthDate;
+    // Create birth date in UTC
+    const birthDateUTC = new Date(Date.UTC(birthYear, birthMonth - 1, birthDay, birthHour));
+
+    // Add 12 hours for UTC+12
+    const birthDateUTC12 = new Date(birthDateUTC.getTime() + (12 * 60 * 60 * 1000));
+
+    // Get current date in UTC
+    const nowUTC = new Date(Date.now());
+
+    const ageInMilliseconds = nowUTC - birthDateUTC12;
     const ageInSeconds = ageInMilliseconds / 1000;
     const ageInMinutes = ageInSeconds / 60;
     const ageInHours = ageInMinutes / 60;
