@@ -12,6 +12,7 @@ window.saveBirthData = function() {
 
     // save to local storage
     localStorage.setItem('birthDate', JSON.stringify({year: birthYear, month: birthMonth, day: birthDay, hour: birthHour}));
+    console.log("saved age")
     
     // Get current date in GMT
     const now = new Date(Date.now());
