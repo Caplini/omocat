@@ -9,6 +9,9 @@ function showAgeInputModal() {
 window.saveBirthData = function() {
     // Convert birth date to GMT
     const birthDate = new Date(Date.UTC(birthYear, birthMonth - 1, birthDay, birthHour));
+
+    // save to local storage
+    localStorage.setItem('birthDate', JSON.stringify({year: birthYear, month: birthMonth, day: birthDay, hour: birthHour}));
     
     // Get current date in GMT
     const now = new Date(Date.now());
