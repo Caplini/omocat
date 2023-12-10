@@ -10,6 +10,11 @@ window.saveBirthData = function() {
     // Convert birth date to GMT
     const birthDate = new Date(Date.UTC(birthYear, birthMonth - 1, birthDay, birthHour));
 
+    birthYear = document.getElementById('inputYear').value;
+    birthDay = document.getElementById('inputDay').value;
+    birthMonth = document.getElementById('inputMonth').value;
+    birthHour = document.getElementById('inputHour').value;
+
     localStorage.setItem('birthDate', JSON.stringify({year: birthYear, day: birthDay, month: birthMonth, hour: birthHour}));
 
     
