@@ -12,7 +12,7 @@ window.saveBirthData = function() {
     birthMonth = document.getElementById('inputMonth').value;
     birthHour = document.getElementById('inputHour').value;
 
-    localStorage.setItem("birthDate", JSON.stringify({ year: birthYear, day: birthDay, month: birthMonth, hour: birthHour }));
+    localStorage.setItem('birthDate', JSON.stringify({year: birthYear, day: birthDay, month: birthMonth, hour: birthHour}));
 
     // Close the modal after saving data
     document.getElementById('ageInputModal').style.display = "none";
